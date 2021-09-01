@@ -1,0 +1,16 @@
+body {
+    background: #071720;
+    color: white;
+    font-family:cursive;
+    font-size:large;
+}
+
+nav {
+    background: #1d2933;
+    text-align: center;
+}
+
+#main-heading {
+    margin-top: 0px;
+    padding: 10px;
+}
