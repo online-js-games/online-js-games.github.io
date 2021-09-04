@@ -5,6 +5,10 @@ body {
     font-size:large;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
 nav {
     background: #1d2933;
     text-align: center;
@@ -13,4 +17,8 @@ nav {
 #main-heading {
     margin-top: 0px;
     padding: 10px;
+}
+
+.main-body {
+    margin: 2%;
 }
