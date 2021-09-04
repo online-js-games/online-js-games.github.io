@@ -98,6 +98,14 @@ else {
         pressed = false;
         released();
     });
+
+    window.addEventListener("keydown", function(e) {
+        keyPressed(e.keyCode);
+    }, false);
+
+    window.addEventListener("keydown", function(e) {
+        keyReleased(e.keyCode);
+    }, false);
 }
 
 function getMousePosition(canvas, event) {
