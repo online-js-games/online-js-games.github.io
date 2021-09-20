@@ -21,7 +21,7 @@ function initDesktopCanvas() {
 function initMobileCanvas() {
     getScreenParams();
     console.log(screen_width, screen_height);
-    if(screen_height > screen_width) {
+    if (screen_height > screen_width) {
         canvas_width = 0.95 * screen_width;
         canvas_height = canvas_width / 1.618;
         alert("Please reload this game in landscape mode for a better experience!");
@@ -102,18 +102,25 @@ if (on_mobile) {
     }, false);
 
     canvas.addEventListener("touchend", function (e) {
-        getTouchPosition(canvas, e);
         let touch = e.touches[0];
-        let mouseEvent = new MouseEvent("mouseup", {
-            clientX: touch.clientX,
-            clientY: touch.clientY
-        });
+        let mouseEvent
+        if (touch === undefined) {
+            mouseEvent = new MouseEvent("mouseup", {
+                clientX: click_x,
+                clientY: click_y
+            });
+        }
+        else {
+            mouseEvent = new MouseEvent("mouseup", {
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+        }
         canvas.dispatchEvent(mouseEvent);
-        pressed = false;
         released();
     }, false);
 
-    window.onorientationchange = function() {
+    window.onorientationchange = function () {
         console.log("Orientation changed!");
         initMobileCanvas();
     }
