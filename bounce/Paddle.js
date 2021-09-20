@@ -7,17 +7,24 @@ class Paddle {
             height: height
         }
         this.speed = Math.abs(speed);
+
+        this.moving_left = false;
+        this.moving_right = false;
     }
     moveLeft() {
         this.rect.x -= this.speed;
+        this.moving_left = true;
         if(this.rect.x < 0) {
             this.rect.x = 0;
+            this.moving_left = false;
         }
     }
     moveRight() {
         this.rect.x += this.speed;
+        this.moving_right = true;
         if(this.rect.x + this.rect.width > canvas_width) {
             this.rect.x = canvas_width - this.rect.width;
+            this.moving_right = false;
         }
     }
     render() {

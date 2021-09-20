@@ -17,9 +17,10 @@
     <script src="basic.js" defer></script>
     <script src="user_input.js" defer></script>
     <script src="Paddle.js" defer></script>
+    <script src="Ball.js" defer></script>
     <script src="game.js" defer></script>
 
-    <title>Template | Online Games</title>
+    <title>Bounce | Online Games</title>
 </head>
 
 <body>
@@ -35,9 +36,24 @@
         </div>
     </nav>
 
-    <h2>Template</h2>
+    <h2>Bounce</h2>
 
     <div class="main-body">
+        <div class="flow-text center">
+            <b>Instructions:</b> Hit the ball with the paddle. If one player misses it, then the other player will gain a point
+            <br>
+            <b>Tips:</b> If you move the paddle while the ball is in contact with it, then the ball will get deflected
+            <br>
+            <b>Computer Controls:</b> Press left/right cursor keys, or A/D to move the paddle
+            <br>
+            <b>Mobile Controls:</b> Touch the left/right part of the screen to move the paddle
+            <p>
+                Developed by ChanRT | Fork me at <a href="https://github.com/chanrt">GitHub</a>
+            </p>
+        </div>
+
+        <hr>
+
         <center>
             <br>
             <canvas id="canvas"></canvas>
@@ -46,11 +62,8 @@
             <button id="scroll-button" onclick="scrollToggle()" class="btn purple darken-4">Disable scroll</button> -->
         </center>
 
-        <hr>
         <center>
-            <p>
-                Developed by ChanRT | Fork me at <a href="https://github.com/chanrt">GitHub</a>
-            </p>
+            
         </center>
     </div>
 </body>

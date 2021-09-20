@@ -25,12 +25,12 @@ function initMobileCanvas() {
     getScreenParams();
     console.log(screen_width, screen_height);
     if (screen_height > screen_width) {
-        canvas_width = 0.9 * screen_width;
+        canvas_width = 0.95 * screen_width;
         canvas_height = canvas_width / 1.618;
         alert("Please reload this game in landscape mode for a better experience!");
     }
     else {
-        canvas_height = 0.9 * screen_height;
+        canvas_height = 0.95 * screen_height;
         canvas_width = 0.8 * screen_width;
     }
     resizeCanvas();

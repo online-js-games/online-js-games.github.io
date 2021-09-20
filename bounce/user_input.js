@@ -30,19 +30,24 @@ function released() {
 }
 
 function keyPressed(key) {
-    if(key == "ArrowLeft") {
+    if(key == "ArrowLeft" || key == "a" || key == "A") {
         left_press = true;
     }
-    if(key == "ArrowRight") {
+    if(key == "ArrowRight" || key == "d" || key == "D") {
         right_press = true;
+    }
+    if(key == "p") {
+        pauseToggle();
     }
 }
 
 function keyReleased(key) {
-    if(key == "ArrowLeft") {
+    if(key == "ArrowLeft" || key == "a" || key == "A") {
         left_press = false;
+        player.moving_left = false;
     }
-    if(key == "ArrowRight") {
+    if(key == "ArrowRight" || key == "d" || key == "D") {
         right_press = false;
+        player.moving_right = false;
     }
 }
