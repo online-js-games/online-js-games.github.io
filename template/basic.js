@@ -1,13 +1,16 @@
 // critial parameters
 let screen_width, screen_height;
 let canvas_width, canvas_height;
-let fps = 24, paused = false;
+let fps = 24, paused = false, scroll_enabled = true;
 let accelerated = true;
 let on_mobile;
 
 // declare elements here
 let canvas = _getElement("canvas");
 let context = canvas.getContext("2d");
+
+let pause_button = _getElement("pause-button");
+let scroll_button = _getElement("scroll-button");
 
 // decide canvas dimensions here (desktop)
 function initDesktopCanvas() {
@@ -21,13 +24,13 @@ function initDesktopCanvas() {
 function initMobileCanvas() {
     getScreenParams();
     console.log(screen_width, screen_height);
-    if(screen_height > screen_width) {
-        canvas_width = 0.95 * screen_width;
+    if (screen_height > screen_width) {
+        canvas_width = 0.9 * screen_width;
         canvas_height = canvas_width / 1.618;
         alert("Please reload this game in landscape mode for a better experience!");
     }
     else {
-        canvas_height = 0.95 * screen_height;
+        canvas_height = 0.9 * screen_height;
         canvas_width = 0.8 * screen_width;
     }
     resizeCanvas();
@@ -120,7 +123,7 @@ if (on_mobile) {
         released();
     }, false);
 
-    window.onorientationchange = function() {
+    window.onorientationchange = function () {
         console.log("Orientation changed!");
         initMobileCanvas();
     }
@@ -177,6 +180,68 @@ function getScreenParams() {
 function resizeCanvas() {
     canvas.width = canvas_width;
     canvas.height = canvas_height;
+}
+
+function pauseToggle() {
+    if (!paused) {
+        paused = true;
+        pause_button.innerHTML = "Resume";
+    }
+    else {
+        paused = false;
+        pause_button.innerHTML = "Pause";
+    }
+}
+
+function scrollToggle() {
+    if (scroll_enabled) {
+        scroll_enabled = false;
+        disableScroll();
+        scroll_button.innerHTML = "Enable Scroll";
+    }
+    else {
+        scroll_enabled = true;
+        enableScroll();
+        scroll_button.innerHTML = "Disable Scroll";
+    }
+}
+
+// Scroll disable part
+var keys = { 37: 1, 38: 1, 39: 1, 40: 1 };
+
+function preventDefault(e) {
+    e.preventDefault();
+}
+
+function preventDefaultForScrollKeys(e) {
+    if (keys[e.keyCode]) {
+        preventDefault(e);
+        return false;
+    }
+}
+
+let supportsPassive = false;
+try {
+    window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+        get: function () { supportsPassive = true; }
+    }));
+} catch (e) { }
+
+let wheelOpt = supportsPassive ? { passive: false } : false;
+let wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+function disableScroll() {
+    window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+    window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+    window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+    window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+function enableScroll() {
+    window.removeEventListener('DOMMouseScroll', preventDefault, false);
+    window.removeEventListener(wheelEvent, preventDefault, wheelOpt);
+    window.removeEventListener('touchmove', preventDefault, wheelOpt);
+    window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
 }
 
 
