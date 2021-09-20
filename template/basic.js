@@ -23,11 +23,13 @@ function initMobileCanvas() {
     if(screen_height > screen_width) {
         canvas_width = 0.9 * screen_width;
         canvas_height = canvas_width / 1.618;
+        alert("Please play this game in landscape mode for a better experience!");
     }
     else {
         canvas_height = 0.9 * screen_height;
         canvas_width = canvas_height * 1.618;
     }
+    resizeCanvas();
 }
 
 // determine device
