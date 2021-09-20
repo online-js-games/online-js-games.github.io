@@ -1,18 +1,18 @@
 let screen_width = window.innerWidth, screen_height = window.innerHeight;
 let canvas_width, canvas_height;
 let fps = 24, paused = false;
-let mobile;
+let on_mobile;
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    mobile = true;
+    on_mobile = true;
 } else {
-    mobile = false;
+    on_mobile = false;
 }
 
 let canvas = document.getElementById("canvas");
 let context = canvas.getContext("2d");
 
-if (mobile) {
+if (on_mobile) {
     canvas_width = 0.9 * screen_width;
 }
 else {
@@ -45,7 +45,7 @@ window.onload = function() {
 
 let click_x, click_y, pressed;
 
-if(mobile) {
+if(on_mobile) {
     canvas.addEventListener("touchstart", function (e) {
         getTouchPosition(canvas, e);
         let touch = e.touches[0];
@@ -103,7 +103,7 @@ else {
         keyPressed(e.keyCode);
     }, false);
 
-    window.addEventListener("keydown", function(e) {
+    window.addEventListener("keyup", function(e) {
         keyReleased(e.keyCode);
     }, false);
 }
