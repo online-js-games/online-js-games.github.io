@@ -2,6 +2,9 @@ let player;
 let ball;
 
 function update() {
+    player.moving_left = false;
+    player.moving_right = false;
+    
     if(left_press) {
         player.moveLeft();
     }
@@ -21,6 +24,8 @@ function update() {
     }
 
     ball.update();
+
+    console.log(player.moving_left, player.moving_right);
 }
 
 function render() {

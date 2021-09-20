@@ -44,10 +44,8 @@ function keyPressed(key) {
 function keyReleased(key) {
     if(key == "ArrowLeft" || key == "a" || key == "A") {
         left_press = false;
-        player.moving_left = false;
     }
     if(key == "ArrowRight" || key == "d" || key == "D") {
         right_press = false;
-        player.moving_right = false;
     }
 }

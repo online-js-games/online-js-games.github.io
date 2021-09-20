@@ -14,7 +14,6 @@ function _rectsCollideDir(small_rect, big_rect) {
     if(_insideRect(small_rect.x, small_rect.y + small_rect.height, big_rect)) {
         bottom_left = true;
     }
-    console.log(top_left, top_right, bottom_left, bottom_right);
     if(!(top_left || top_right || bottom_left || bottom_right)) {
         return 0;
     }

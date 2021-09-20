@@ -5,9 +5,7 @@ class Ball {
         this.radius = radius;
 
         this.setRect();
-        
-        this.speed_x = 0;
-        this.speed_y = 5;
+        this.setSpeed();
     }
     update() {
         this.x += this.speed_x;
@@ -24,6 +22,9 @@ class Ball {
         else if(this.y - this.radius < 0) {
             this.y = this.radius;
             this.reflectY();
+        }
+        else if(this.y > canvas_height) {
+            this.respawn();
         }
 
         this.rect.x = this.x - this.radius;
@@ -74,6 +75,10 @@ class Ball {
         context.fillStyle = "#ff0000";
         _fillCircle(this.x, this.y, this.radius, context);
     }
+    setSpeed() {
+        this.speed_x = 0;
+        this.speed_y = 5;
+    }
     setRect() {
         this.rect = {
             x: this.x - this.radius,
@@ -87,8 +92,6 @@ class Ball {
         this.y = canvas_height / 2;
 
         this.setRect();
-
-        speed_x = 0;
-        speed_y = 0;
+        this.setSpeed();
     }
 }
